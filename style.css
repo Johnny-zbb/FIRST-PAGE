@@ -1,0 +1,81 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none; /*全局文本修饰，如取消下划线*/
+  font-family: "montserrat";
+}
+body{
+  background: #333;
+}
+
+.middle{
+  position: absolute;  /*设置元素绝对定位*/
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.card{
+  cursor: pointer;
+  width: 330px;
+  height: 470px;
+}
+
+.front,.back{
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /*溢出元素修剪掉并隐藏*/
+  backface-visibility: hidden; /*定义元素不面向屏幕时是否可见*/
+  position: absolute;
+  transition: transform .6s linear;
+}
+
+.front img{
+  height: 100%;
+}
+
+.front{
+  /* 动画样式，设置镜头到元素平面的距离，变换时元素按Y轴旋转 */
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.back{ /*背面卡片样式*/
+  background: #f1f1f1;
+  transform: perspective(600px) rotateY(180deg);
+}
+
+.back-content{ /*背面文字部分样式*/
+  color: #2c3e50;
+  text-align: center;
+  width: 100%;
+}
+
+.sm{ /*字体图标部分样式*/
+  margin: 20px 0;
+}
+
+.sm a{ /*字体图标部分 可点击超链接样式*/
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  color: #2c3e50;
+  font-size: 18px;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.sm a:hover{  /*鼠标移动至字体图标超链接上时样式*/
+  font-size: 25px;
+  background: #2c3e50;
+  color: white;
+}
+
+.card:hover > .front{ /*选定card后的所有front样式，与.card:hover .front类似但不同*/
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+.card:hover > .back{ /*同上*/
+  transform: perspective(600px) rotateY(0deg);
+}
